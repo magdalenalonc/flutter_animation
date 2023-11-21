@@ -1,4 +1,4 @@
-package com.example.flutter_animation
+package com.magdalenalonc.flutter_animation
 
 import io.flutter.embedding.android.FlutterActivity
 
