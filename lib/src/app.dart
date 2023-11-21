@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'screens/home_screen.dart';
+
 class App extends StatelessWidget {
   const App({super.key});
 
@@ -9,6 +11,8 @@ class App extends StatelessWidget {
       title: 'Animation',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        appBarTheme: AppBarTheme.of(context)
+            .copyWith(backgroundColor: Colors.deepPurple),
       ),
       home: HomeScreen(),
     );
