@@ -28,13 +28,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 
-  Widget buildAnimation() {
+  Widget buildCatAnimation() {
     return AnimatedBuilder(
       animation: catAnimation,
       builder: (context, child) {
-        return Container(
-          margin: EdgeInsets.only(top: catAnimation.value),
-          child: child,
+        return Positioned(
+          top: catAnimation.value,
+          right: 0.0,
+          left: 0.0,
+          child: child!,
         );
       },
       child: const Cat(),
@@ -51,6 +53,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     }
   }
 
+  Widget buildBox() {
+    return Container(
+      height: 200.0,
+      width: 200.0,
+      color: Colors.brown,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +72,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       ),
       body: GestureDetector(
         onTap: onTap,
-        child: buildAnimation(),
+        child: Center(
+          child: Stack(
+            children: [
+              // 1st Widget in Stack is towards the very bottom
+              buildBox(),
+              // The last Widget in Stack is up the top
+              buildCatAnimation(),
+            ],
+          ),
+        ),
       ),
     );
   }
