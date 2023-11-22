@@ -26,8 +26,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         curve: Curves.easeIn,
       ),
     );
-    // starting animation:
-    catController.forward();
   }
 
   Widget buildAnimation() {
@@ -43,19 +41,29 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 
+  void onTap() {
+    if (catController.status == AnimationStatus.completed) {
+      // reverse() method is opposite of forward(); form end value to begin
+      catController.reverse();
+    } else if (catController.status == AnimationStatus.dismissed) {
+      // starting animation method; from begin value to end
+      catController.forward();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
           'Animation!',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
-          ),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
-      body: buildAnimation(),
+      body: GestureDetector(
+        onTap: onTap,
+        child: buildAnimation(),
+      ),
     );
   }
 }
